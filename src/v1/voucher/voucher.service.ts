@@ -1,11 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Voucher } from './voucher.schema';
 import { Model } from 'mongoose';
-import { CreateVoucherDto } from '../dto/createVoucher.dto';
+import { CreateVoucherDto } from '../../dto/createVoucher.dto';
 import { UseVoucherDto } from 'src/dto/useVoucher.dto';
-import { NotFoundException, BadRequestException } from '@nestjs/common';
-import { EditVoucherDto } from '../dto/editVoucher.dto';
+import { EditVoucherDto } from '../../dto/editVoucher.dto';
 
 @Injectable()
 export class VoucherService {
@@ -13,7 +16,6 @@ export class VoucherService {
     @InjectModel(Voucher.name) private readonly voucherModel: Model<Voucher>,
   ) {}
 
-  // create voucher (for admin )
   async createVoucher(
     createVoucher: CreateVoucherDto,
     userId: string,
@@ -25,11 +27,9 @@ export class VoucherService {
       ...createVoucher,
       createdBy: userId,
     });
-    // save the new voucher to the database
     return await newVoucher.save();
   }
 
-  // get all voucher by user
   async getAllVoucherByUser(userId: string): Promise<Voucher[]> {
     return this.voucherModel
       .find({
@@ -39,7 +39,6 @@ export class VoucherService {
       .exec();
   }
 
-  // apply voucher (for user)
   async applyVoucher(
     useVoucherDto: UseVoucherDto,
     userId: string,
@@ -82,7 +81,6 @@ export class VoucherService {
       );
     }
 
-    // calculate discount
     let discountAmount = 0;
     if (voucher.discountType === 'percentage') {
       discountAmount = (useVoucherDto.cartValue * voucher.discountValue) / 100;
@@ -93,7 +91,6 @@ export class VoucherService {
       discountAmount = voucher.discountValue;
     }
 
-    // return value after applying voucher
     return {
       voucher: voucher,
       discountAmount: discountAmount,
@@ -102,13 +99,11 @@ export class VoucherService {
     };
   }
 
-  // call at checkout
   async useVoucher(
     voucherCode: string,
     userId: string,
     cartValue: number,
   ): Promise<any> {
-    // First apply the voucher to validate it
     const voucherApplication = await this.applyVoucher(
       { voucherCode, cartValue },
       userId,

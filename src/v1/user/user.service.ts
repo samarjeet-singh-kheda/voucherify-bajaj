@@ -22,7 +22,6 @@ export class UserService {
   async signup(SignupDto: SignupDto): Promise<User> {
     const { email, username, password } = SignupDto;
 
-    // Check if user exists
     const existingUser = await this.userModel.findOne({ email });
     if (existingUser) {
       throw new ConflictException('User Already Exists');

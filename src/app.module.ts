@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
+import { UserModule } from './v1/user/user.module';
 import { DatabaseModule } from './database/db.module';
-import { VoucherModule } from './voucher/voucher.module';
+import { VoucherModule } from './v1/voucher/voucher.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({

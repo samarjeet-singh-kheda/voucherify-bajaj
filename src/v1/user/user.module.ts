@@ -11,10 +11,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   controllers: [UserController],
   providers: [UserService, JwtStrategy],
   imports: [
-    ConfigModule, // Ensure ConfigModule is imported
+    ConfigModule,
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
     JwtModule.registerAsync({
-      imports: [ConfigModule], // Import ConfigModule for dynamic configuration
+      imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),

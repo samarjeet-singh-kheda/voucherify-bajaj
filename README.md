@@ -36,7 +36,7 @@ MONGO_URI=your_mongodb_uri
 
 - **Sign Up**
 
-  - **URL:** `/api/user/sign-up`
+  - **URL:** `/api/v1/user/sign-up`
   - **Method:** `POST`
   - **Body:**
     ```json
@@ -49,7 +49,7 @@ MONGO_URI=your_mongodb_uri
   - **Description:** Register a new user.
 
 - **Log In**
-  - **URL:** `/api/user/log-in`
+  - **URL:** `/api/v1/user/log-in`
   - **Method:** `POST`
   - **Body:**
     ```json
@@ -64,7 +64,7 @@ MONGO_URI=your_mongodb_uri
 
 - **Get All Vouchers (Admin)**
 
-  - **URL:** `/api/voucher/vouchers`
+  - **URL:** `/api/v1/voucher/vouchers`
   - **Method:** `GET`
   - **Headers:**
     ```json
@@ -76,7 +76,7 @@ MONGO_URI=your_mongodb_uri
 
 - **Create Voucher (Admin)**
 
-  - **URL:** `/api/voucher/create-voucher`
+  - **URL:** `/api/v1/voucher/create-voucher`
   - **Method:** `POST`
   - **Headers:**
     ```json
@@ -108,7 +108,7 @@ MONGO_URI=your_mongodb_uri
 
 - **Apply Voucher (User)**
 
-  - **URL:** `/api/voucher/apply-voucher`
+  - **URL:** `/api/v1/voucher/apply-voucher`
   - **Method:** `POST`
   - **Headers:**
     ```json
@@ -127,7 +127,7 @@ MONGO_URI=your_mongodb_uri
 
 - **Use Voucher (User)**
 
-  - **URL:** `/api/voucher/use-voucher`
+  - **URL:** `/api/v1/voucher/use-voucher`
   - **Method:** `POST`
   - **Headers:**
     ```json
@@ -146,7 +146,7 @@ MONGO_URI=your_mongodb_uri
 
 - **Delete Voucher (Admin)**
 
-  - **URL:** `/api/voucher/delete/:id`
+  - **URL:** `/api/v1/voucher/delete/:id`
   - **Method:** `DELETE`
   - **Headers:**
     ```json
@@ -157,7 +157,7 @@ MONGO_URI=your_mongodb_uri
   - **Description:** Delete a voucher by its ID.
 
 - **Edit Voucher (Admin)**
-  - **URL:** `/api/voucher/edit-voucher/:id`
+  - **URL:** `/api/v1/voucher/edit-voucher/:id`
   - **Method:** `PATCH`
   - **Headers:**
     ```json
